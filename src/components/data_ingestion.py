@@ -12,15 +12,15 @@ from dataclasses import dataclass
 from components.model_trainer import ModelTrainer
 from components.model_trainer import ModelTrainerConfig
 @dataclass
-class Dataingestionconfig:
+class Dataingestionconfig: #to get the path location and store the files
     train_data_path:str=os.path.join("artifacts","train.csv")
     test_data_path:str=os.path.join("artifacts","test.csv")
     raw_data_path:str=os.path.join("artifacts","data.csv")
 
-class Dataingestion:
+class Dataingestion: 
     def __init__(self):
-        self.ingestion_config=Dataingestionconfig()
-    def init_data_ingestion(self):
+        self.ingestion_config=Dataingestionconfig() #initializes the config class
+    def init_data_ingestion(self):                      # deals with dataset and divides the data set into 3 parts, raw data, one file for training and the other for testing
         logging.info("starting to ingest data")
         try:
             df=pd.read_csv("notebook/data/stud.csv")
@@ -41,6 +41,6 @@ if __name__=="__main__":
     train_data,test_data=obj.init_data_ingestion()
     data_transformation=DataTransformation()
     train_arr,test_arr,_=data_transformation.init_data_transformation(train_data,test_data)
-    modeltrainer=ModelTrainer()
-    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
+    modeltrainer=ModelTrainer()                                                    
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))                 # prints the r2 score
 

@@ -15,7 +15,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from dataclasses import dataclass
 
 @dataclass
-class DataTransformationConfig:
+class DataTransformationConfig:                                # deals with transformation of data, handles missing values, feature scaling 
     preprocessor_object_file_path=os.path.join("artifacts","preprocessor.pkl")
 class DataTransformation:
     def __init__(self):
