@@ -1,5 +1,8 @@
 import sys
-from logger import logging
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent)) #to prevent error : no module named
+# from exception import CustomException
+from logger import logging #no need to define the module name, can directly access as already specifies in line 3
 def error_msg_detail(error,error_detail:sys): 
     _,_,exc_tb=error_detail.exc_info() # provides the details about the error , file name and all that
     file_name=exc_tb.tb_frame.f_code.co_filename #provides the filename where error occured
@@ -13,10 +16,5 @@ class CustomException(Exception):
         self.error_message=error_msg_detail(error_message,error_detail=error_detail)
     def __str__(self):
         return self.error_message
-if __name__=="__main__":
-    try:
-        a=1/0
-    except Exception as e:
-        logging.info("divide by 0 error")
-        raise CustomException(e,sys)
+
     
