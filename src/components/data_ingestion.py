@@ -4,6 +4,8 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from exception import CustomException
 from logger import logging
+from components.data_transformation import DataTransformation
+from components.data_transformation import DataTransformationConfig
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
@@ -34,5 +36,8 @@ class Dataingestion:
             raise CustomException(e,sys)
 if __name__=="__main__":
     obj=Dataingestion()
-    obj.init_data_ingestion()
+    # obj.init_data_ingestion()
+    train_data,test_data=obj.init_data_ingestion()
+    data_transformation=DataTransformation()
+    data_transformation.init_data_transformation(train_data,test_data)
 
