@@ -1,4 +1,5 @@
-import sys 
+import sys
+from logger import logging
 def error_msg_detail(error,error_detail:sys): 
     _,_,exc_tb=error_detail.exc_info() # provides the details about the error , file name and all that
     file_name=exc_tb.tb_frame.f_code.co_filename #provides the filename where error occured
@@ -9,6 +10,13 @@ def error_msg_detail(error,error_detail:sys):
 class CustomException(Exception):
     def __init__(self,error_message,error_detail:sys):
         super().__init__(error_message)
-        self.error_message=error_msg_detail(error_message,error_details=error_detail)
+        self.error_message=error_msg_detail(error_message,error_detail=error_detail)
     def __str__(self):
         return self.error_message
+if __name__=="__main__":
+    try:
+        a=1/0
+    except Exception as e:
+        logging.info("divide by 0 error")
+        raise CustomException(e,sys)
+    
