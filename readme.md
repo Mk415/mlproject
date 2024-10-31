@@ -5,3 +5,4 @@
 <p> Requirement : requirements.txt</p>
 <p> The notebook contains the dataset</p>
 <p> The src contains the data ingestion , transformation and the model training code</p>
+<p> Templates : Front end code </p>
